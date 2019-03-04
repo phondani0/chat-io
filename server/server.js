@@ -28,7 +28,7 @@ io.on('connection', socket => {
 
     socket.on('disconnect', () => {
         console.log('User disconnected...');
-    })
+    });
 });
 
 const port = process.env.PORT || 3000;
@@ -39,5 +39,3 @@ server.listen(port, (err) => {
         console.log(`Server started at port ${port}`);
     }
 });
-
-console.log(publicPath);
