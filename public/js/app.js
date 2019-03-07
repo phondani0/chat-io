@@ -6,4 +6,14 @@ socket.on('connect', () => {
 
 socket.on('disconnect', () => {
     console.log('Disconnected from the server...')
-})
+});
+
+socket.on('newMessage', (msg) => {
+    console.log(msg);
+});
+
+socket.emit('sendMessage', {
+    'from': 'Alice',
+    'text': 'Hello',
+    'createdAt': 'now'
+});
