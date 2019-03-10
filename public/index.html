@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+	<title>Home | Chat-io</title>
 	<meta charset="utf-8">
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
+
 <body>
 	<p>Welcome to chat-io</p>
-
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<form>
+					<div class="input-field col s12">
+						<input id="message" type="text" class="validate">
+						<label for="message">Message</label>
+					</div>
+					<button class="btn" type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/app.js"></script>
 </body>
+
 </html>
