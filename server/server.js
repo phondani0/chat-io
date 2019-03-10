@@ -26,6 +26,18 @@ const io = socketIO(server);
 io.on('connection', socket => {
     console.log('New user connected...');
 
+    socket.emit('newMessage', {
+        'from': 'admin',
+        'text': 'Welcome to chat-io',
+        'createdAt': new Date().getTime()
+    });
+
+    socket.broadcast.emit('newMessage', {
+        'from': 'admin',
+        'text': 'New User Joined chat-io',
+        'createdAt': new Date().getTime()
+    });
+
     socket.on('createMessage', (msg) => {
         console.log('createMessage: from: ' + msg.from + ' msg: ' + msg.text);
         io.emit('newMessage', {
