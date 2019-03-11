@@ -11,3 +11,14 @@ socket.on('disconnect', () => {
 socket.on('newMessage', (msg) => {
     console.log('New Message: from: ' + msg.from + ' msg: ' + msg.text);
 });
+
+socket.emit('createMessage', {
+    'from': 'Ronan',
+    'text': 'this is Ronan'
+}, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Got your msg');
+    }
+});

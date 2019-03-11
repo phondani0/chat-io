@@ -34,9 +34,10 @@ io.on('connection', socket => {
 
     socket.broadcast.emit('newMessage', generateMsg('admin', 'New User Joined chat-io'));
 
-    socket.on('createMessage', (msg) => {
+    socket.on('createMessage', (msg, callback) => {
         console.log('createMessage: from: ' + msg.from + ' msg: ' + msg.text);
         io.emit('newMessage', generateMsg(msg.from, msg.text));
+        callback(null);
     });
 
     socket.on('disconnect', () => {
