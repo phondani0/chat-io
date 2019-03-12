@@ -9,16 +9,27 @@ socket.on('disconnect', () => {
 });
 
 socket.on('newMessage', (msg) => {
-    console.log('New Message: from: ' + msg.from + ' msg: ' + msg.text);
+    console.log(msg.text + ' from:- ' + msg.from);
+    const li = $('<li></li>');
+    $(li).html(`<b>${msg.from}</b>: ${msg.text}`);
+    $('#msg-list').append(li);
 });
 
-socket.emit('createMessage', {
-    'from': 'Ronan',
-    'text': 'this is Ronan'
-}, (err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Got your msg');
+
+$('#msg-form').on('submit', (e) => {
+    e.preventDefault();
+
+    const msg = {
+        'from': $('[name="name"]').val(),
+        'text': $('[name="message"]').val()
     }
+    console.log(msg);
+    socket.emit('createMessage', msg, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Got your msg');
+        }
+    });
+
 });
