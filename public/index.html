@@ -11,30 +11,26 @@
 
 <body>
 	<div class="container">
-		<h4 class="center-align">Welcome to chat-io</h4>
+		<h5 class="center-align">Welcome to chat-io</h5>
 	</div>
 	<div class="container">
-
 		<div class="row">
 			<div class="col s12">
 				<div class="input-field col s12">
-					<input id="name" type="text" name="name" required autocomplete=off>
+					<input id="name" name="name" type="text" required autocomplete=off>
 					<label for="name">Name</label>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s12">
-
-
-				<div class="card-panel">
+				<div id="messages">
 					<ul id="msg-list"></ul>
 				</div>
-
 				<form id="msg-form">
 					<div class="input-field col s12">
-						<input id="message" name="message" required type="text" class="validate" autocomplete=off>
-						<label for="message">Message</label>
+						<input id="new-msg" name="message" required type="text" class="validate" autocomplete=off>
+						<label for="new-msg">Message</label>
 					</div>
 					<button id="msg-send" class="btn" type="submit">Send</button>
 				</form>

@@ -10,18 +10,21 @@ socket.on('disconnect', () => {
 
 socket.on('newMessage', (msg) => {
     console.log(msg.text + ' from:- ' + msg.from);
+
+    if ($('#messages')[0].className === "") {
+        $('#messages').addClass("card-panel");
+    }
     const li = $('<li></li>');
     $(li).html(`<b>${msg.from}</b>: ${msg.text}`);
     $('#msg-list').append(li);
 });
-
 
 $('#msg-form').on('submit', (e) => {
     e.preventDefault();
 
     const msg = {
         'from': $('[name="name"]').val(),
-        'text': $('[name="message"]').val()
+        'text': $('[name="new-msg"]').val()
     }
     console.log(msg);
     socket.emit('createMessage', msg, (err) => {
