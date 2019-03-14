@@ -17,22 +17,36 @@ socket.on('newMessage', (msg) => {
     const li = $('<li></li>');
     $(li).html(`<b>${msg.from}</b>: ${msg.text}`);
     $('#msg-list').append(li);
+
+    scrollToBottom();
 });
 
-$('#msg-form').on('submit', (e) => {
-    e.preventDefault();
+$(document).ready(function () {
+    $('#msg-form').on('submit', (e) => {
+        e.preventDefault();
 
-    const msg = {
-        'from': $('[name="name"]').val(),
-        'text': $('[name="new-msg"]').val()
-    }
-    console.log(msg);
-    socket.emit('createMessage', msg, (err) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Got your msg');
+        const msg = {
+            'from': $('[name="name"]').val(),
+            'text': $('[name="new-msg"]').val()
         }
-    });
+        console.log(msg);
+        socket.emit('createMessage', msg, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Got your msg');
+            }
+        });
 
+    });
 });
+
+function scrollToBottom() {
+    const clientHeight = $('#messages').prop('clientHeight');
+    const scrollHeight = $('#messages').prop('scrollHeight');
+    const scrollTop = $('#messages').prop('scrollTop');
+
+    if (clientHeight + scrollTop >= scrollHeight) {
+        $(window).scrollTop(scrollHeight);
+    }
+};

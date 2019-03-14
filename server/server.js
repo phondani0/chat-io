@@ -30,9 +30,9 @@ const io = socketIO(server);
 io.on('connection', socket => {
     console.log('New user connected...');
 
-    socket.emit('newMessage', generateMsg('admin', 'Welcome to chat-io'));
+    socket.emit('newMessage', generateMsg('Admin', 'Welcome to Chat-io'));
 
-    socket.broadcast.emit('newMessage', generateMsg('admin', 'New User Joined chat-io'));
+    socket.broadcast.emit('newMessage', generateMsg('admin', 'New user joined Chat-io'));
 
     socket.on('createMessage', (msg, callback) => {
         console.log('createMessage: from: ' + msg.from + ' msg: ' + msg.text);
