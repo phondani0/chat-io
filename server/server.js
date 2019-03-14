@@ -1,12 +1,8 @@
 const express = require('express');
-const socketIO = require('socket.io');
 const http = require('http');
 const path = require('path');
 const publicPath = path.join(__dirname + '/../public');
 
-const {
-    generateMsg
-} = require('./utils/message');
 
 const app = express();
 
@@ -25,25 +21,7 @@ app.use((err, req, res, next) => {
 
 const server = http.createServer(app);
 
-const io = socketIO(server);
-
-io.on('connection', socket => {
-    console.log('New user connected...');
-
-    socket.emit('newMessage', generateMsg('Admin', 'Welcome to Chat-io'));
-
-    socket.broadcast.emit('newMessage', generateMsg('admin', 'New user joined Chat-io'));
-
-    socket.on('createMessage', (msg, callback) => {
-        console.log('createMessage: from: ' + msg.from + ' msg: ' + msg.text);
-        io.emit('newMessage', generateMsg(msg.from, msg.text));
-        callback(null);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('User disconnected...');
-    });
-});
+require('./utils/socket')(server);
 
 const port = process.env.PORT || 3000;
 server.listen(port, (err) => {
