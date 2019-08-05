@@ -11,9 +11,16 @@ module.exports = function (server) {
     io.on('connection', socket => {
         console.log('New user connected...');
 
-        socket.emit('newMessage', generateMsg('Admin', 'Welcome to Chat-io'));
+        socket.on('join', (params, callback) => {
+            console.log(params);
 
-        socket.broadcast.emit('newMessage', generateMsg('admin', 'New user joined Chat-io'));
+            socket.join(params.room, () => {
+                io.to(params.room).emit('newMessage', generateMsg('Admin', 'Welcome to Chat-io'));
+                socket.broadcast.to(params.room).emit('newMessage', generateMsg('Admin', `${params.username} has joined`));
+            });
+
+            callback(null);
+        });
 
         socket.on('createMessage', (msg, callback) => {
             console.log('createMessage: from: ' + msg.from + ' msg: ' + msg.text);

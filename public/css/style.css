@@ -1,0 +1,23 @@
+html,
+body,
+* {
+    box-sizing: border-box
+}
+
+body {
+    background-color: #DBDBD4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#right-panel {}
+
+#messages {
+    overflow: auto;
+    height: 400px;
+    position: relative;
+}
+
+
+
+#msg-form {}

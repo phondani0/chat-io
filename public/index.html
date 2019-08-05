@@ -2,46 +2,51 @@
 <html>
 
 <head>
-	<title>Home | Chat-io</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Home | Chat-io</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
+<style>
+    html, body, .login-box {
+    height: 100%;
+}
+
+</style>
+
 <body>
-	<div class="container">
-		<h5 class="center-align">Welcome to chat-io</h5>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col s12">
-				<div class="input-field col s12">
-					<input id="name" name="name" type="text" required autocomplete=off>
-					<label for="name">Name</label>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s12">
-				<div id="messages">
-					<ul id="msg-list"></ul>
-				</div>
-				<form id="msg-form">
-					<div class="input-field col s12">
-						<input id="new-msg" name="new-msg" required type="text" class="validate" autocomplete=off>
-						<label for="new-msg">Message</label>
-					</div>
-					<button id="msg-send" class="btn" type="submit">Send</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Compiled and minified JavaScript -->
-	<script src="/js/libs/jquery_min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="/js/app.js"></script>
+    <div class="valign-wrapper row login-box">
+        <div class="col card s10 pull-s1 m6 pull-m3 l4 pull-l4">
+            <form id="join-room">
+                <div class="card-content">
+                    <span class="card-title">Enter credentials</span>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="username">Username</label>
+                            <input type="text" class="validate" name="username" id="username" autocomplete="off"
+                                required />
+                        </div>
+                        <div class="input-field col s12">
+                            <label for="room">Room Name</label>
+                            <input type="text" class="validate" name="room" id="room" autocomplete="off" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action right-align">
+                    <input type="submit" class="btn green" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="/js/libs/jquery_min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
 </body>
 
 </html>

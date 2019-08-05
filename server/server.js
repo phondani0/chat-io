@@ -3,7 +3,6 @@ const http = require('http');
 const path = require('path');
 const publicPath = path.join(__dirname + '/../public');
 
-
 const app = express();
 
 app.use(express.static(publicPath));
@@ -21,6 +20,7 @@ app.use((err, req, res, next) => {
 
 const server = http.createServer(app);
 
+// Import socket module
 require('./utils/socket')(server);
 
 const port = process.env.PORT || 3000;
